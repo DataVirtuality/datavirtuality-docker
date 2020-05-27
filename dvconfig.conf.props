@@ -1,0 +1,3 @@
+JAVA_OPTS="$JAVA_OPTS -Ddv.dvconfig.type=psql -Ddv.dvlogs.type=psql 
+-Ddv.dvconfig.ds=dvconfig_pg -Ddv.dvlogs.ds=dvconfig_pg"
+JAVA_OPTS="$JAVA_OPTS -Ddv.dvconfig.host=${CONFIG_HOST} -Ddv.dvconfig.port=${CONFIG_PORT} -Ddv.dvconfig.db=${CONFIG_DB} -Ddv.dvconfig.user=${CONFIG_USER} -Ddv.dvconfig.pwd=${CONFIG_PASSWORD} -Ddv.dvconfig.schema=public -Ddv.dvlogs.schema=public"
