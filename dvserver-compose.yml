@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+
+  dvserver:
+    build: .
+    restart: always
+    ports:
+      - 8080
+      - 31000
+      - 31001
+      - 35432
+      - 35433
+
+    depends_on:
+      - postgres
+
+    environment:
+      CONFIG_HOST: postgres
+      CONFIG_PORT: 5432
+      CONFIG_DB: postgres
+      CONFIG_USER: postgres
+      CONFIG_PASSWORD: example

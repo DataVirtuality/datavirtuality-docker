@@ -1,16 +1,24 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+
+ARG arg_dvserverver_to_deploy=dvserver-TRUNK.linux.x86_64.zip
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD dvserver-TRUNK.linux.x86_64.zip /tmp/dvserver.zip
-RUN apt-get update && apt-get -y install unzip runit-systemd && \
-    apt install -y mc atop htop net-tools iputils-ping apt-utils
+ADD $arg_dvserverver_to_deploy /tmp/dvserver.zip
+RUN apt update && apt -y install unzip
 RUN mkdir -p /opt/datavirtuality && unzip /tmp/dvserver.zip -d /opt/datavirtuality/ && rm /tmp/dvserver.zip
 ADD dvconfig.conf.props /opt/datavirtuality/dvserver/bin/
 
-ADD dvserver_move_to_ext_volume.sh /opt/datavirtuality/
+RUN mkdir /opt/datavirtuality/persistent_data /opt/datavirtuality/persistent_data/log
+RUN mv /opt/datavirtuality/dvserver/standalone/data/datavirtuality/license.lic /opt/datavirtuality/persistent_data/
+RUN mv /opt/datavirtuality/dvserver/standalone/configuration/dvserver-standalone.xml /opt/datavirtuality/persistent_data/
+
+RUN ln -s /opt/datavirtuality/persistent_data/license.lic /opt/datavirtuality/dvserver/standalone/data/datavirtuality/license.lic
+RUN ln -s /opt/datavirtuality/persistent_data/log /opt/datavirtuality/dvserver/standalone/log
+RUN ln -s /opt/datavirtuality/persistent_data/dvserver-standalone.xml /opt/datavirtuality/dvserver/standalone/configuration/dvserver-standalone.xml
+
+VOLUME /opt/datavirtuality/persistent_data
 
 EXPOSE 8080/tcp 31000/tcp 31001/tcp 35432/tcp 35433/tcp
 
-CMD ["/bin/bash"]
-####CMD ["/opt/datavirtuality/dvserver/bin/dvserver.sh"]
+CMD ["/opt/datavirtuality/dvserver/bin/dvserver.sh"]
