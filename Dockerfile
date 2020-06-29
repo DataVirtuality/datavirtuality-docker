@@ -1,13 +1,11 @@
 FROM ubuntu:20.04
 
-ARG arg_dvserverver_to_deploy=dvserver-TRUNK.linux.x86_64.zip
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD $arg_dvserverver_to_deploy /tmp/dvserver.zip
-RUN apt update && apt -y install unzip
-RUN mkdir -p /opt/datavirtuality && unzip /tmp/dvserver.zip -d /opt/datavirtuality/ && rm /tmp/dvserver.zip
-ADD dvconfig.conf.props /opt/datavirtuality/dvserver/bin/
+RUN mkdir -p /opt/datavirtuality
+COPY dvserver /opt/datavirtuality/dvserver
+COPY dvconfig.conf.props /opt/datavirtuality/dvserver/bin/
 
 RUN mkdir /opt/datavirtuality/persistent_data /opt/datavirtuality/persistent_data/log
 RUN mv /opt/datavirtuality/dvserver/standalone/data/datavirtuality/license.lic /opt/datavirtuality/persistent_data/
