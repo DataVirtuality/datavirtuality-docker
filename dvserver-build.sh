@@ -16,6 +16,6 @@ fi
 unzip "$arg_dvserver_ver_to_deploy"
 docker build -t "$img_to_run" .
 rm "$arg_dvserver_ver_to_deploy"
-rm -r dvserver
+rm -rf dvserver
 
 exit 0
