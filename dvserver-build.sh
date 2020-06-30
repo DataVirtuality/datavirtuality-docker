@@ -13,9 +13,9 @@ elif [[ $# -eq 2 ]]; then
     arg_dvserver_ver_to_deploy=$2
 fi
 
-unzip $arg_dvserver_ver_to_deploy
-docker build -t $img_to_run .
-rm $arg_dvserver_ver_to_deploy
+unzip "$arg_dvserver_ver_to_deploy"
+docker build -t "$img_to_run" .
+rm "$arg_dvserver_ver_to_deploy"
 rm -r dvserver
 
 exit 0

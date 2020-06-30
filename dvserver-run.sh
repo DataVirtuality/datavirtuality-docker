@@ -10,13 +10,13 @@ if [[ $# -eq 0 ]] || [[ $# -ge 3 ]]; then
 elif [[ $# -eq 1 ]]; then
     img_to_run=$1
 
-    docker run -d --name dvserver -h dvserver --env-file config.env -p 8080:8080/tcp -p 31000:31000/tcp -p 31001:31001/tcp -p 35432:35432/tcp -p 35433:35433/tcp $img_to_run
+    docker run -d --name dvserver -h dvserver --env-file config.env -p 8080:8080/tcp -p 31000:31000/tcp -p 31001:31001/tcp -p 35432:35432/tcp -p 35433:35433/tcp "$img_to_run"
 elif [[ $# -eq 2 ]]; then
     img_to_run=$1
     volumename=$2
     local_path_mount=/opt/datavirtuality/persistent_data
 
-    docker run -d --name dvserver -h dvserver -v $volumename:$local_path_mount --env-file config.env -p 8080:8080/tcp -p 31000:31000/tcp -p 31001:31001/tcp -p 35432:35432/tcp -p 35433:35433/tcp $img_to_run
+    docker run -d --name dvserver -h dvserver -v "$volumename:$local_path_mount" --env-file config.env -p 8080:8080/tcp -p 31000:31000/tcp -p 31001:31001/tcp -p 35432:35432/tcp -p 35433:35433/tcp "$img_to_run"
 fi
 
 exit 0
