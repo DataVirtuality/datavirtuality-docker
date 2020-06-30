@@ -1,7 +1,5 @@
 FROM ubuntu:20.04
 
-ENV DEBIAN_FRONTEND noninteractive
-
 RUN mkdir -p /opt/datavirtuality
 COPY dvserver /opt/datavirtuality/dvserver
 COPY dvconfig.conf.props /opt/datavirtuality/dvserver/bin/
