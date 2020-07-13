@@ -8,6 +8,9 @@ function cleanup {
 
 trap cleanup EXIT
 
+img_to_build=$1
+tag_to_build=$2
+
 if [[ $# -eq 0 || $# -ge 4 ]]; then
     echo "Usage: dvserver-build.sh IMAGE TAG [DVSERVER_PACKAGE]"
     echo ""
@@ -19,12 +22,8 @@ if [[ $# -eq 0 || $# -ge 4 ]]; then
 
     exit 1
 elif [[ $# -eq 2 ]]; then
-    img_to_build=$1
-    tag_to_build=$2
     arg_dvserver_ver_to_deploy=dvserver-TRUNK.linux.x86_64.zip
 elif [[ $# -eq 3 ]]; then
-    img_to_build=$1
-    tag_to_build=$2
     arg_dvserver_ver_to_deploy=$3
 fi
 
