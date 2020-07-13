@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 if [[ $# -eq 0 || $# -ge 3 ]]; then
     echo "    Use: dvserver-build.sh <img_to_run:tag> <arg_dvserver_ver_to_deploy>"
     echo "         Parameter <image:tag> is mandatory."
