@@ -18,5 +18,3 @@ elif [[ $# -eq 2 ]]; then
 
     docker run -d --name dvserver -h dvserver -v "$volumename:$local_path_mount" --env-file config.env -p 8080:8080/tcp -p 31000:31000/tcp -p 31001:31001/tcp -p 35432:35432/tcp -p 35433:35433/tcp "$img_to_run"
 fi
-
-exit 0
