@@ -2,6 +2,12 @@
 
 set -e
 
+function cleanup {
+  rm -rf dvserver
+}
+
+trap cleanup EXIT
+
 if [[ $# -eq 0 || $# -ge 3 ]]; then
     echo "Useage: dvserver-build.sh <img_to_build:tag> <arg_dvserver_ver_to_deploy>"
     echo "        Parameter <image:tag> is mandatory."
@@ -17,4 +23,3 @@ fi
 
 unzip "$arg_dvserver_ver_to_deploy"
 docker build -t "$img_to_build" .
-rm -rf dvserver
