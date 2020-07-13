@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
-if [[ $# -eq 0 ]] || [[ $# -ge 3 ]]; then
-    echo "    Use:     dvserver-run.sh <image:tag> <volume name>"
-    echo "             Parameter <image:tag> is mandatory."
-    echo "             and <volume name> is optional."
+if [[ $# -eq 0 || $# -ge 3 ]]; then
+    echo "Usage: dvserver-run.sh IMAGE:TAG [VOLUME_NAME]"
     echo ""
-    echo "    Example: dvserver-run.sh dvserver:2.3.10 dv_persistent_data"
+    echo "  IMAGE        the name of the image to run"
+    echo "  TAG          the version tag of the image to run"
+    echo "  VOLUME_NAME  the name of a Docker volume to attach to the container. The volume will get created if it does not exist yet."
+    echo ""
+    echo "Example: ./dvserver-run.sh dvserver:2.3.10 dv_persistent_data"
+
     exit 1
 elif [[ $# -eq 1 ]]; then
     img_to_run=$1
