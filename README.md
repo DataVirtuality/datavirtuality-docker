@@ -11,7 +11,7 @@ This repository includes all needed configuration and scripts to run Data Virtua
 ### Build the image
 Run the provided script to build the image, passing the name and version of the image, as well as the Data Virtuality Server Linux ZIP archive:
 ```console
-$ ./dvserver-build.sh dvserver:2.3.10 dvserver-RELEASE_2.3.10.linux.x86_64.zip
+$ ./dvserver-build.sh dvserver 2.3.10 dvserver-RELEASE_2.3.10.linux.x86_64.zip
 ```
 
 ## How to use this image
