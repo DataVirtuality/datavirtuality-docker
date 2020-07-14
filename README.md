@@ -20,7 +20,7 @@ Before starting the image, open the file `config.env` and provide the credential
 ### Start a Data Virtuality Server container
 Starting a container is simple, a bash script is included in the repository:
 ```console
-$ ./dvserver-run.sh dvserver:2.3.10
+$ ./dvserver-run.sh dvserver 2.3.10
 ```
 
 ### Where to store data
@@ -28,7 +28,7 @@ By default, all data created during the runtime of the container remains within 
 The `dvserver-run.sh` script has this mechanism already built-in and you can pass the name of the volume to be used as a second parameter. The volume will be created automatically if it doesn't exist yet:
 
 ```console
-$ ./dvserver-run.sh dvserver:2.3.10 dv_data
+$ ./dvserver-run.sh dvserver 2.3.10 dv_data
 ```
 
 ### docker-compose
