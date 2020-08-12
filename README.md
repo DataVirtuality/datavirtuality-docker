@@ -27,7 +27,7 @@ $ ./dvserver-run.sh dvserver 2.3.10
 By default, all data created during the runtime of the container remains within the container (except for the configuration database). This includes certain configuration files, the license and log files. To persist the data, you can either use a volume or bind mount. Volumes are recommended by Docker as the preferred way. 
 
 #### Using a volume
-Pass a volume as `-v $volume_name:/opt/datavirtuality/persistent_data`.
+Pass a volume as `--volume $volume_name:/opt/datavirtuality/persistent_data`.
 
 The `dvserver-run.sh` script has this mechanism already built-in and you can pass the name of the volume to be used as a second parameter. The volume will be created automatically if it doesn't exist yet:
 
