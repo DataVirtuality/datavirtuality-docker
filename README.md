@@ -24,12 +24,19 @@ $ ./dvserver-run.sh dvserver 2.3.10
 ```
 
 ### Where to store data
-By default, all data created during the runtime of the container remains within the container (except for the configuration database). This includes certain configuration files, the license and log files. To store these files permanently outside of the container, you can pass a volume as `-v $volume_name:/opt/datavirtuality/persistent_data`.
+By default, all data created during the runtime of the container remains within the container (except for the configuration database). This includes certain configuration files, the license and log files. To persist the data, you can either use a volume or bind mount. Volumes are recommended by Docker as the preferred way. 
+
+#### Using a volume
+Pass a volume as `-v $volume_name:/opt/datavirtuality/persistent_data`.
+
 The `dvserver-run.sh` script has this mechanism already built-in and you can pass the name of the volume to be used as a second parameter. The volume will be created automatically if it doesn't exist yet:
 
 ```console
 $ ./dvserver-run.sh dvserver 2.3.10 dv_data
 ```
+
+#### Using a bind mount
+If you need to use a bind mount, you can pass the option as `--mount type=bind,source=/tmp/source_directory,target=/opt/datavirtuality/persistent_data`. Replace `/tmp/source_directory` with an existing path on the host.
 
 ### docker-compose
 You can also use `docker compose` to manage the Data Virtuality Server container and the PostgreSQL configuration database container. See [dvserver-compose.yml](dvserver-compose.yml) for an example configuration that can be started with `docker-compose -f dvserver-compose.yml up`.
