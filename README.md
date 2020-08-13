@@ -23,8 +23,11 @@ Starting a container is simple, a bash script is included in the repository:
 $ ./dvserver-run.sh dvserver 2.3.10
 ```
 
-### Where to store data
-By default, all data created during the runtime of the container remains within the container (except for the configuration database). This includes certain configuration files, the license and log files. To persist the data, you can either use a volume or bind mount. Volumes are recommended by Docker as the preferred way. 
+### Persistent data
+By default, all data created during the runtime of the container remains within the container (except for the configuration database). To persist the data, you can either use a volume or bind mount. Volumes are recommended by Docker as the preferred way. The following files/folders are stored inside the volume:
+* `log`: Contains all application log files
+* `license.lic`: The Data Virtuality license file
+* `dvserver-standalone.xml`: A central configuration file that usually does not need to be edited by the user directly
 
 #### Using a volume
 Pass a volume as `--volume $volume_name:/opt/datavirtuality/persistent_data`.
